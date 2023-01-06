@@ -1,18 +1,14 @@
-import socket #allow the connection
-s=socket.socket() # initialize the socket object
-host=socket.gethostname() #give the host address of the program, where the client.py will connect to
-port =8080 #can set to anything we like
-s.bind((host, port)) #bind socket to 8080
-s.listen(1) # will listen to coming connection , listen to only 1 computer
-print(host)
-print("Waiting for any coming connection..")
-conn, addr =s.accept()
-print(addr,"Has connected to the server")
+import socket
+s= socket.socket()
+host = input(str("Please enter the host address of sender:"))
+port =8080
+s.connect((host, port))
+print("connected...")
 
-#create the file transfer
-filename = input(str("Please enter the filename: "))
-# Open it in read byte mode
-file = open(filename, 'rb')
-file_data=file.read(1024)
-conn.send(file_data)
-print("Data has been transmitted successfully")
+#recieve
+filename = input(str("please enter a filename for the incoming file: "))
+file = open(filename, 'wb') # open in write byte mode
+file_data =s.recv(1024)
+file.write(file_data)
+file.close() #to finish it off
+print("File has been received successfully")

@@ -6,9 +6,8 @@ s.connect((host, port))
 print("connected...")
 
 #recieve
-filename = input(str("please enter a filename for the incoming file: "))
-file = open(filename, 'wb') # open in write byte mode
+f=open("/home/pi/Desktop/Soil Moisture Sensor/output.csv", "a") 
 file_data =s.recv(1024)
-file.write(file_data)
-file.close() #to finish it off
+f.write(file_data)
+f.close() #to finish it off
 print("File has been received successfully")
